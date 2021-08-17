@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserStoreRequest;
+use App\Http\Requests\UserUpdateRequest;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -14,7 +18,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('users.index');
+        $users = User::all();
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -33,20 +38,17 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserStoreRequest $request)
     {
-        //
-    }
+          User::create([
+            'usuario' => $request->usuario,
+            'nombre' => $request->nombre,
+            'apellido' => $request->apellido,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        return redirect()->route('users.index')->with('message', 'Usuario registrado de manera exitosa');
     }
 
     /**
@@ -68,9 +70,16 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserUpdateRequest $request, User $user)
     {
-        //
+        $user->update([
+            'usuario' => $request->usuario,
+            'nombre' => $request->nombre,
+            'apellido' => $request->apellido,
+            'email' => $request->email,
+        ]);
+
+        return redirect()->route('users.index')->with('message', 'Usuario actualizado de manera exitosa');
     }
 
     /**
@@ -79,8 +88,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        if(auth()->user()->id === $user->id){
+            return redirect()->route('users.index')->with('message', 'No puedes borrarte a ti mismo');
+        }
+        $user->delete();
+        return redirect()->route('users.index')->with('message', 'Usuario borrado con exito');
+
     }
 }
