@@ -51,8 +51,21 @@
                     <td>{{ $pais->codigo_pais }}</td>
                     <td>{{ $pais->nombre }}</td>
                     <td>
-                        <a href="{{route('users.edit', $pais->id)}}" class="btn btn-success">Editar</a>
+                        <div class="row">
+                            <div class="col">
+                                <a href="{{route('paises.edit', $pais->id)}}" class="btn btn-success">Editar</a>
+                            </div>
+                            <div class="col">
+                                <form method="POST" action="{{ route('paises.destroy', $pais->id) }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger" onclick="return confirm('¿Esta seguro que desea borrar?')">Borrar</button>
+                                </form> 
+                            </div>
+                            
+                        </div>
                     </td>
+                    
                 </tr>
             @endforeach
             </tbody>
