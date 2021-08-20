@@ -32,3 +32,8 @@ Route::resource('provincias', ProvinciaController::class)->parameters(['provinci
 Route::resource('ciudades', CiudadController::class)->parameters(['ciudades' => 'ciudad']);
 Route::resource('departamentos', DepartamentoController::class)->parameters(['departamentos' => 'departamento']);
 Route::post('users/{user}/change-password', [ChangePasswordController::class, 'change_password'])->name('users.change.password');
+
+
+Route::get('{any}', function(){
+    return view('empleados.index');
+})->where('{any}', '.*');
