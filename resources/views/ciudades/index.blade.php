@@ -30,8 +30,8 @@
                         </div>
                     </form>
                 </div>
-                 <div>
-                    <a href="{{route('ciudades.create')}}" class="btn btn-primary mb-2">Crear Ciudad</a>
+                <div>
+                     <a href="{{route('ciudades.create')}}" class="btn btn-primary mb-2">Crear Ciudad</a>
                 </div>
             </div>
         </div>

@@ -50,25 +50,15 @@ class CiudadController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Ciudad $ciudad)
     {
-        //
+        $provincias = Provincia::all();
+        return view('ciudades.edit', compact('ciudad', 'provincias'));
     }
 
     /**
@@ -78,9 +68,13 @@ class CiudadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CiudadStoreRequest $request, Ciudad $ciudad)
     {
-        //
+        $ciudad->update([
+            'provincia_id' => $request->provincia_id,
+            'nombre' => $request->nombre
+        ]);
+        return redirect()->route('ciudades.index')->with('message', 'Ciudad actualizada de manera exitosa');
     }
 
     /**
@@ -89,8 +83,9 @@ class CiudadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Ciudad $ciudad)
     {
-        //
+        $ciudad->delete();
+        return redirect()->route('provincias.index')->with('message', 'Ciudad borrada de manera exitosa');
     }
 }
