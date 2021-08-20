@@ -13,6 +13,9 @@ class ProvinciaController extends Controller
     public function index(Request $request)
     {
         $provincias = Provincia::all();
+        if($request->has('search')){
+            $provincias = Provincia::where('nombre', 'like', "%{$request->search}%")->get();
+        }
         return view('provincias.index', compact('provincias'));
     }
 
