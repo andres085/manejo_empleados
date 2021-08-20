@@ -40,6 +40,7 @@
             <thead>
                 <tr>
                 <th scope="col">#ID</th>
+                <th scope="col">Codigo País</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Acciones</th>
                 </tr>
@@ -47,6 +48,7 @@
             @foreach ($provincias as $provincia)
                 <tr>
                     <th scope="row">{{ $provincia->id }}</th>
+                    <td>{{ $provincia->pais->codigo_pais }}</td>
                     <td>{{ $provincia->nombre }}</td>
                     <td>
                         <div class="row">

@@ -4,26 +4,31 @@
     
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">
-        Paises
+        Provincias
     </h1>
 </div>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Crear País') }}
-                <a href="{{route('paises.index')}}" class="float-right">Volver</a>
+                <div class="card-header">{{ __('Crear Provincia') }}
+                <a href="{{route('provincias.index')}}" class="float-right">Volver</a>
                 </div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('paises.store') }}">
+                    <form method="POST" action="{{ route('provincias.store') }}">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="codigo_pais" class="col-md-4 col-form-label text-md-right">{{ __('Codigo') }}</label>
+                            <label for="pais" class="col-md-4 col-form-label text-md-right">{{ __('País') }}</label>
 
                             <div class="col-md-6">
-                                <input id="codigo_pais" type="text" class="form-control @error('codigo_pais') is-invalid @enderror" name="codigo_pais" value="{{ old('codigo_pais') }}" required autocomplete="codigo_pais" autofocus>
+                                <select name="pais_id" class="form-control" aria-label="Default select example">
+                                    <option selected>Selecciona un País</option>
+                                    @foreach ($paises as $pais)
+                                        <option value="{{$pais->id}}">{{$pais->nombre}}</option>
+                                    @endforeach
+                                </select>
 
                                 @error('codigo_pais')
                                     <span class="invalid-feedback" role="alert">
