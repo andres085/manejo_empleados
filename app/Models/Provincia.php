@@ -21,4 +21,14 @@ class Provincia extends Model
         return $this->belongsTo(Pais::class);
     }
 
+    /**
+     * Get all of the ciudades for the Provincia
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function ciudades(): HasMany
+    {
+        return $this->hasMany(Ciudad::class);
+    }
+
 }

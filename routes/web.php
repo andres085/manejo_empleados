@@ -3,6 +3,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\ChangePassword;
 use App\Http\Controllers\Backend\PaisController;
 use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\Backend\CiudadController;
 use App\Http\Controllers\Backend\ProvinciaController;
 use App\Http\Controllers\Backend\ChangePasswordController;
 
@@ -27,4 +28,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('users', UserController::class);
 Route::resource('paises', PaisController::class)->parameters(['paises' => 'pais']);
 Route::resource('provincias', ProvinciaController::class)->parameters(['provincias' => 'provincia']);
+Route::resource('ciudades', CiudadController::class)->parameters(['ciudades' => 'ciudad']);
 Route::post('users/{user}/change-password', [ChangePasswordController::class, 'change_password'])->name('users.change.password');
