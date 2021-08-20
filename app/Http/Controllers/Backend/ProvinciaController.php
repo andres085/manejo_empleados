@@ -31,7 +31,18 @@ class ProvinciaController extends Controller
 
     public function edit(Provincia $provincia)
     {
-        return view('provincia.edit', compact('provincia'));
+        $paises = Pais::all();
+        return view('provincias.edit', compact('provincia', 'paises'));
+    }
+
+    public function update(ProvinciaStoreRequest $request, Provincia $provincia)
+    {
+        $provincia->update([
+            'pais_id' => $request->pais_id,
+            'nombre' => $request->nombre
+        ]);
+
+        return redirect()->route('provincias.index')->with('message', 'Provincia actualizada de manera exitosa');
     }
     
 }
