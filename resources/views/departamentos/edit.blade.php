@@ -16,7 +16,7 @@
                 </div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('departamentos.update', $departamentos->id) }}">
+                    <form method="POST" action="{{ route('departamentos.update', $departamento->id) }}">
                         @csrf
                         @method('PUT')
                         <div class="form-group row">

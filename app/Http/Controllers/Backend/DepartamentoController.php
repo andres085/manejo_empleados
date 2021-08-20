@@ -17,9 +17,9 @@ class DepartamentoController extends Controller
     public function index(Request $request)
     {
         $departamentos = Departamento::all();
-        // if($request->has('search')){
-        //     $departamentos = Departamento::where('nombre', 'like', "%{$request->search}%")->get();
-        // }
+        if($request->has('search')){
+            $departamentos = Departamento::where('nombre', 'like', "%{$request->search}%")->get();
+        }
         return view('departamentos.index', compact('departamentos'));
     }
 
@@ -52,9 +52,9 @@ class DepartamentoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Departamento $departamento)
     {
-        //
+        return view('departamentos.edit', compact('departamento'));
     }
 
     /**
@@ -64,9 +64,12 @@ class DepartamentoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(DepartamentoStoreRequest $request, Departamento $departamento)
     {
-        //
+        $departamento->update([
+            'nombre' => $request->nombre
+        ]);
+        return redirect()->route('departamentos.index')->with('message', 'Departamento actualizado de manera exitosa');
     }
 
     /**
