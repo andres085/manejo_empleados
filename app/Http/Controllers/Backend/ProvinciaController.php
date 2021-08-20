@@ -44,5 +44,10 @@ class ProvinciaController extends Controller
 
         return redirect()->route('provincias.index')->with('message', 'Provincia actualizada de manera exitosa');
     }
-    
+
+    public function destroy(Provincia $provincia)
+    {
+        $provincia->delete();
+        return redirect()->route('provincias.index')->with('message', 'Provincia borrada de manera exitosa');
+    }
 }
