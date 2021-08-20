@@ -15,12 +15,12 @@ class CiudadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $ciudades = Ciudad::all();
-        // if($request->has('search')){
-        //     $ciudades = Ciudad::where('nombre', 'like', "%{$request->search}%")->get();
-        // }
+        if($request->has('search')){
+            $ciudades = Ciudad::where('nombre', 'like', "%{$request->search}%")->get();
+        }
         return view('ciudades.index', compact('ciudades'));
     }
 
