@@ -24,7 +24,8 @@ Vue.use(VueRouter);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component(
-    'empleados-index', require('./components/empleados/Index.vue').default
+    'empleados-index', require('./components/empleados/Index.vue').default,
+    'empleados-create', require('./components/empleados/Create.vue').default
 );
 
 const router = new VueRouter({

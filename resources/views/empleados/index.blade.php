@@ -2,6 +2,6 @@
 
 @section('content')
 <div id="app">
-    <empleados-index></empleados-index>
+    <router-view></router-view>
 </div>
 @endsection
