@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Models\Empleado;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\EmpleadoResource;
 use App\Http\Requests\EmpleadoStoreRequest;
 
 class EmpleadoController extends Controller
@@ -16,7 +17,9 @@ class EmpleadoController extends Controller
      */
     public function index()
     {
-        //
+        $empleados = Empleado::all();
+
+        return EmpleadoResource::collection($empleados);
     }
 
     /**

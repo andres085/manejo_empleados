@@ -25,4 +25,6 @@ Route::get('/empleados/{pais}/provincias', [EmpleadoDataController::class, 'prov
 Route::get('/empleados/departamentos', [EmpleadoDataController::class, 'departamentos']);
 Route::get('/empleados/{provincia}/ciudades', [EmpleadoDataController::class, 'ciudades']);
 
+
+Route::get('/empleados', [EmpleadoController::class, 'index']);
 Route::post('/empleados', [EmpleadoController::class, 'store']);

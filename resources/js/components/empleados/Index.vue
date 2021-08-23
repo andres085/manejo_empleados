@@ -39,12 +39,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row"></th>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                            <tr v-for="empleado in empleados" :key="empleado.id">
+                                <th scope="row">#{{empleado.id}}</th>
+                                <td>{{empleado.apellido}}</td>
+                                <td>{{empleado.nombre}}</td>
+                                <td>{{empleado.direccion}}</td>
+                                <td>{{empleado.departamento}}</td>
                                 <td>
                                     <div class="row">
                                         <div class="col">
@@ -67,7 +67,24 @@
 
 <script>
 export default {
-   
+    data(){
+        return {
+            empleados: []
+        }
+    },
+    created() {
+        this.getEmpleados();
+    },
+    methods:{
+        getEmpleados(){
+            axios.get('/api/empleados')
+            .then(res => {
+                this.empleados = res.data.data;
+            }).catch(error => {
+                console.log(error);
+            })
+        }
+    }
 }
 </script>
 
