@@ -19,7 +19,7 @@
                                     <label for="apellido" class="col-md-4 col-form-label text-md-right">Apellido</label>
 
                                     <div class="col-md-6">
-                                        <input id="apellido" type="text" class="form-control" name="apellido" value="">
+                                        <input id="apellido" type="text" class="form-control" name="apellido" value="" v-model="form.apellido">
                                     </div>
                                 </div>
 
@@ -27,7 +27,7 @@
                                     <label for="nombre" class="col-md-4 col-form-label text-md-right">Nombre</label>
 
                                     <div class="col-md-6">
-                                        <input id="nombre" type="text" class="form-control" name="nombre" value="">
+                                        <input id="nombre" type="text" class="form-control" name="nombre" value="" v-model="form.nombre">
                                     </div>
                                 </div>
 
@@ -35,7 +35,7 @@
                                     <label for="segundo_nombre" class="col-md-4 col-form-label text-md-right">Segundo Nombre</label>
 
                                     <div class="col-md-6">
-                                        <input id="segundo_nombre" type="text" class="form-control" name="segundo_nombre" value="">
+                                        <input id="segundo_nombre" type="text" class="form-control" name="segundo_nombre" value="" v-model="form.segundo_nombre">
                                     </div>
                                 </div>
 
@@ -43,7 +43,7 @@
                                     <label for="direccion" class="col-md-4 col-form-label text-md-right">Dirección</label>
 
                                     <div class="col-md-6">
-                                        <input id="direccion" type="text" class="form-control" name="direccion" value="">
+                                        <input id="direccion" type="text" class="form-control" name="direccion" value="" v-model="form.direccion">
                                     </div>
                                 </div>
 
@@ -52,7 +52,6 @@
 
                                     <div class="col-md-6">
                                         <select name="id_pais" class="form-control" aria-label="Default select example" v-model="form.id_pais" @change="getProvincias()">
-                                            <option value="">Selecciona un Pais</option>
                                             <option v-for="pais in paises" :key="pais.id" :value="pais.id">{{pais.nombre}}</option>
                                         </select>
                                     </div>
@@ -62,9 +61,8 @@
                                          <label for="provincia" class="col-md-4 col-form-label text-md-right">Provincia</label>
 
                                     <div class="col-md-6">
-                                        <select name="id_provincia" class="form-control" aria-label="Default select example">
-                                            <option selected>Selecciona una Provincia</option>
-                                                <option value=""></option>
+                                        <select name="id_provincia" class="form-control" aria-label="Default select example" v-model="form.id_provincia" @change="getCiudades()">
+                                                <option v-for="provincia in provincias" :key="provincia.id" :value="provincia.id">{{provincia.nombre}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -73,9 +71,8 @@
                                     <label for="id_departamento" class="col-md-4 col-form-label text-md-right">Departamento</label>
 
                                     <div class="col-md-6">
-                                        <select name="id_departamento" class="form-control" aria-label="Default select example">
-                                            <option selected>Selecciona un Departamento</option>
-                                                <option value=""></option>
+                                        <select name="id_departamento" class="form-control" aria-label="Default select example" v-model="form.id_departamento">
+                                                <option v-for="departamento in departamentos" :key="departamento.id" :value="departamento.id">{{departamento.nombre}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -84,9 +81,8 @@
                                     <label for="id_ciudad" class="col-md-4 col-form-label text-md-right">Ciudad</label>
 
                                     <div class="col-md-6">
-                                        <select name="id_ciudad" class="form-control" aria-label="Default select example">
-                                            <option selected>Selecciona una Ciudad</option>
-                                                <option value=""></option>
+                                        <select name="id_ciudad" class="form-control" aria-label="Default select example" v-model="form.id_ciudad">
+                                                <option v-for="ciudad in ciudades" :key="ciudad.id" :value="ciudad.id">{{ ciudad.nombre }}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -95,7 +91,7 @@
                                     <label for="codigo_postal" class="col-md-4 col-form-label text-md-right">Codigo Postal</label>
 
                                     <div class="col-md-6">
-                                        <input id="codigo_postal" type="text" class="form-control" name="codigo_postal" value="">
+                                        <input id="codigo_postal" type="text" class="form-control" name="codigo_postal" value="" v-model="form.codigo_postal">
                                     </div>
                                 </div>
 
@@ -103,7 +99,7 @@
                                     <label for="fecha_nacimiento" class="col-md-4 col-form-label text-md-right">Fecha de Nacimiento</label>
 
                                     <div class="col-md-6">
-                                        <datepicker id="fecha_nacimiento" input-class="form-control"></datepicker>
+                                        <datepicker id="fecha_nacimiento" input-class="form-control" v-model="form.fecha_nacimiento"></datepicker>
                                     </div>
                                 </div>
 
@@ -111,7 +107,7 @@
                                     <label for="fecha_contratacion" class="col-md-4 col-form-label text-md-right">Fecha de Contratación</label>
 
                                     <div class="col-md-6">
-                                         <datepicker id="fecha_contratacion" input-class="form-control"></datepicker>
+                                         <datepicker id="fecha_contratacion" input-class="form-control" v-model="form.fecha_contratacion"></datepicker>
                                     </div>
                                 </div>
 
@@ -161,6 +157,7 @@ import Datepicker from 'vuejs-datepicker';
         },
         created(){
             this.getPaises();
+            this.getDepartamentos();
         },
         methods: {
             getPaises(){
@@ -175,6 +172,22 @@ import Datepicker from 'vuejs-datepicker';
                 axios.get('/api/empleados/'+ this.form.id_pais + "/provincias")
                     .then(res => {
                         this.provincias = res.data;
+                    }).catch(error => {
+                        console.log(error);
+                    });
+            },
+            getCiudades(){
+                axios.get('/api/empleados/'+ this.form.id_provincia + "/ciudades")
+                    .then(res => {
+                        this.ciudades = res.data;
+                    }).catch(error => {
+                        console.log(error);
+                    });
+            },
+            getDepartamentos(){
+                axios.get('/api/empleados/departamentos')
+                    .then(res => {
+                        this.departamentos = res.data;
                     }).catch(error => {
                         console.log(error);
                     });

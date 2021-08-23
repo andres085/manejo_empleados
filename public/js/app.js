@@ -1976,10 +1976,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -2008,6 +2004,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     this.getPaises();
+    this.getDepartamentos();
   },
   methods: {
     getPaises: function getPaises() {
@@ -2024,6 +2021,24 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/api/empleados/' + this.form.id_pais + "/provincias").then(function (res) {
         _this2.provincias = res.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    getCiudades: function getCiudades() {
+      var _this3 = this;
+
+      axios.get('/api/empleados/' + this.form.id_provincia + "/ciudades").then(function (res) {
+        _this3.ciudades = res.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    getDepartamentos: function getDepartamentos() {
+      var _this4 = this;
+
+      axios.get('/api/empleados/departamentos').then(function (res) {
+        _this4.departamentos = res.data;
       })["catch"](function (error) {
         console.log(error);
       });
@@ -37848,13 +37863,169 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
               _c("form", [
-                _vm._m(1),
+                _c("div", { staticClass: "form-group row" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-4 col-form-label text-md-right",
+                      attrs: { for: "apellido" }
+                    },
+                    [_vm._v("Apellido")]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.apellido,
+                          expression: "form.apellido"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        id: "apellido",
+                        type: "text",
+                        name: "apellido",
+                        value: ""
+                      },
+                      domProps: { value: _vm.form.apellido },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.form, "apellido", $event.target.value)
+                        }
+                      }
+                    })
+                  ])
+                ]),
                 _vm._v(" "),
-                _vm._m(2),
+                _c("div", { staticClass: "form-group row" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-4 col-form-label text-md-right",
+                      attrs: { for: "nombre" }
+                    },
+                    [_vm._v("Nombre")]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.nombre,
+                          expression: "form.nombre"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        id: "nombre",
+                        type: "text",
+                        name: "nombre",
+                        value: ""
+                      },
+                      domProps: { value: _vm.form.nombre },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.form, "nombre", $event.target.value)
+                        }
+                      }
+                    })
+                  ])
+                ]),
                 _vm._v(" "),
-                _vm._m(3),
+                _c("div", { staticClass: "form-group row" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-4 col-form-label text-md-right",
+                      attrs: { for: "segundo_nombre" }
+                    },
+                    [_vm._v("Segundo Nombre")]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.segundo_nombre,
+                          expression: "form.segundo_nombre"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        id: "segundo_nombre",
+                        type: "text",
+                        name: "segundo_nombre",
+                        value: ""
+                      },
+                      domProps: { value: _vm.form.segundo_nombre },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.form,
+                            "segundo_nombre",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ])
+                ]),
                 _vm._v(" "),
-                _vm._m(4),
+                _c("div", { staticClass: "form-group row" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-4 col-form-label text-md-right",
+                      attrs: { for: "direccion" }
+                    },
+                    [_vm._v("Dirección")]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.direccion,
+                          expression: "form.direccion"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        id: "direccion",
+                        type: "text",
+                        name: "direccion",
+                        value: ""
+                      },
+                      domProps: { value: _vm.form.direccion },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.form, "direccion", $event.target.value)
+                        }
+                      }
+                    })
+                  ])
+                ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group row" }, [
                   _c(
@@ -37908,31 +38079,249 @@ var render = function() {
                           ]
                         }
                       },
-                      [
-                        _c("option", { attrs: { value: "" } }, [
-                          _vm._v("Selecciona un Pais")
-                        ]),
-                        _vm._v(" "),
-                        _vm._l(_vm.paises, function(pais) {
-                          return _c(
-                            "option",
-                            { key: pais.id, domProps: { value: pais.id } },
-                            [_vm._v(_vm._s(pais.nombre))]
-                          )
-                        })
-                      ],
-                      2
+                      _vm._l(_vm.paises, function(pais) {
+                        return _c(
+                          "option",
+                          { key: pais.id, domProps: { value: pais.id } },
+                          [_vm._v(_vm._s(pais.nombre))]
+                        )
+                      }),
+                      0
                     )
                   ])
                 ]),
                 _vm._v(" "),
-                _vm._m(5),
+                _c("div", { staticClass: "form-group row" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-4 col-form-label text-md-right",
+                      attrs: { for: "provincia" }
+                    },
+                    [_vm._v("Provincia")]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.id_provincia,
+                            expression: "form.id_provincia"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          name: "id_provincia",
+                          "aria-label": "Default select example"
+                        },
+                        on: {
+                          change: [
+                            function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.form,
+                                "id_provincia",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            },
+                            function($event) {
+                              return _vm.getCiudades()
+                            }
+                          ]
+                        }
+                      },
+                      _vm._l(_vm.provincias, function(provincia) {
+                        return _c(
+                          "option",
+                          {
+                            key: provincia.id,
+                            domProps: { value: provincia.id }
+                          },
+                          [_vm._v(_vm._s(provincia.nombre))]
+                        )
+                      }),
+                      0
+                    )
+                  ])
+                ]),
                 _vm._v(" "),
-                _vm._m(6),
+                _c("div", { staticClass: "form-group row" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-4 col-form-label text-md-right",
+                      attrs: { for: "id_departamento" }
+                    },
+                    [_vm._v("Departamento")]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.id_departamento,
+                            expression: "form.id_departamento"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          name: "id_departamento",
+                          "aria-label": "Default select example"
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.form,
+                              "id_departamento",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
+                        }
+                      },
+                      _vm._l(_vm.departamentos, function(departamento) {
+                        return _c(
+                          "option",
+                          {
+                            key: departamento.id,
+                            domProps: { value: departamento.id }
+                          },
+                          [_vm._v(_vm._s(departamento.nombre))]
+                        )
+                      }),
+                      0
+                    )
+                  ])
+                ]),
                 _vm._v(" "),
-                _vm._m(7),
+                _c("div", { staticClass: "form-group row" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-4 col-form-label text-md-right",
+                      attrs: { for: "id_ciudad" }
+                    },
+                    [_vm._v("Ciudad")]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.id_ciudad,
+                            expression: "form.id_ciudad"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          name: "id_ciudad",
+                          "aria-label": "Default select example"
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.form,
+                              "id_ciudad",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
+                        }
+                      },
+                      _vm._l(_vm.ciudades, function(ciudad) {
+                        return _c(
+                          "option",
+                          { key: ciudad.id, domProps: { value: ciudad.id } },
+                          [_vm._v(_vm._s(ciudad.nombre))]
+                        )
+                      }),
+                      0
+                    )
+                  ])
+                ]),
                 _vm._v(" "),
-                _vm._m(8),
+                _c("div", { staticClass: "form-group row" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-4 col-form-label text-md-right",
+                      attrs: { for: "codigo_postal" }
+                    },
+                    [_vm._v("Codigo Postal")]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.codigo_postal,
+                          expression: "form.codigo_postal"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        id: "codigo_postal",
+                        type: "text",
+                        name: "codigo_postal",
+                        value: ""
+                      },
+                      domProps: { value: _vm.form.codigo_postal },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.form,
+                            "codigo_postal",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ])
+                ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group row" }, [
                   _c(
@@ -37952,6 +38341,13 @@ var render = function() {
                         attrs: {
                           id: "fecha_nacimiento",
                           "input-class": "form-control"
+                        },
+                        model: {
+                          value: _vm.form.fecha_nacimiento,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "fecha_nacimiento", $$v)
+                          },
+                          expression: "form.fecha_nacimiento"
                         }
                       })
                     ],
@@ -37977,6 +38373,13 @@ var render = function() {
                         attrs: {
                           id: "fecha_contratacion",
                           "input-class": "form-control"
+                        },
+                        model: {
+                          value: _vm.form.fecha_contratacion,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "fecha_contratacion", $$v)
+                          },
+                          expression: "form.fecha_contratacion"
                         }
                       })
                     ],
@@ -37984,7 +38387,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(9)
+                _vm._m(1)
               ])
             ])
           ])
@@ -38011,228 +38414,6 @@ var staticRenderFns = [
         ])
       ]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group row" }, [
-      _c(
-        "label",
-        {
-          staticClass: "col-md-4 col-form-label text-md-right",
-          attrs: { for: "apellido" }
-        },
-        [_vm._v("Apellido")]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-6" }, [
-        _c("input", {
-          staticClass: "form-control",
-          attrs: { id: "apellido", type: "text", name: "apellido", value: "" }
-        })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group row" }, [
-      _c(
-        "label",
-        {
-          staticClass: "col-md-4 col-form-label text-md-right",
-          attrs: { for: "nombre" }
-        },
-        [_vm._v("Nombre")]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-6" }, [
-        _c("input", {
-          staticClass: "form-control",
-          attrs: { id: "nombre", type: "text", name: "nombre", value: "" }
-        })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group row" }, [
-      _c(
-        "label",
-        {
-          staticClass: "col-md-4 col-form-label text-md-right",
-          attrs: { for: "segundo_nombre" }
-        },
-        [_vm._v("Segundo Nombre")]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-6" }, [
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            id: "segundo_nombre",
-            type: "text",
-            name: "segundo_nombre",
-            value: ""
-          }
-        })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group row" }, [
-      _c(
-        "label",
-        {
-          staticClass: "col-md-4 col-form-label text-md-right",
-          attrs: { for: "direccion" }
-        },
-        [_vm._v("Dirección")]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-6" }, [
-        _c("input", {
-          staticClass: "form-control",
-          attrs: { id: "direccion", type: "text", name: "direccion", value: "" }
-        })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group row" }, [
-      _c(
-        "label",
-        {
-          staticClass: "col-md-4 col-form-label text-md-right",
-          attrs: { for: "provincia" }
-        },
-        [_vm._v("Provincia")]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-6" }, [
-        _c(
-          "select",
-          {
-            staticClass: "form-control",
-            attrs: {
-              name: "id_provincia",
-              "aria-label": "Default select example"
-            }
-          },
-          [
-            _c("option", { attrs: { selected: "" } }, [
-              _vm._v("Selecciona una Provincia")
-            ]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "" } })
-          ]
-        )
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group row" }, [
-      _c(
-        "label",
-        {
-          staticClass: "col-md-4 col-form-label text-md-right",
-          attrs: { for: "id_departamento" }
-        },
-        [_vm._v("Departamento")]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-6" }, [
-        _c(
-          "select",
-          {
-            staticClass: "form-control",
-            attrs: {
-              name: "id_departamento",
-              "aria-label": "Default select example"
-            }
-          },
-          [
-            _c("option", { attrs: { selected: "" } }, [
-              _vm._v("Selecciona un Departamento")
-            ]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "" } })
-          ]
-        )
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group row" }, [
-      _c(
-        "label",
-        {
-          staticClass: "col-md-4 col-form-label text-md-right",
-          attrs: { for: "id_ciudad" }
-        },
-        [_vm._v("Ciudad")]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-6" }, [
-        _c(
-          "select",
-          {
-            staticClass: "form-control",
-            attrs: { name: "id_ciudad", "aria-label": "Default select example" }
-          },
-          [
-            _c("option", { attrs: { selected: "" } }, [
-              _vm._v("Selecciona una Ciudad")
-            ]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "" } })
-          ]
-        )
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group row" }, [
-      _c(
-        "label",
-        {
-          staticClass: "col-md-4 col-form-label text-md-right",
-          attrs: { for: "codigo_postal" }
-        },
-        [_vm._v("Codigo Postal")]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-6" }, [
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            id: "codigo_postal",
-            type: "text",
-            name: "codigo_postal",
-            value: ""
-          }
-        })
-      ])
-    ])
   },
   function() {
     var _vm = this

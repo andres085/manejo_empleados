@@ -26,7 +26,7 @@ class Provincia extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function ciudades(): HasMany
+    public function ciudades()
     {
         return $this->hasMany(Ciudad::class);
     }

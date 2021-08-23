@@ -22,4 +22,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/empleados/paises', [EmpleadoDataController::class, 'paises']);
 Route::get('/empleados/{pais}/provincias', [EmpleadoDataController::class, 'provincias']);
 Route::get('/empleados/departamentos', [EmpleadoDataController::class, 'departamentos']);
-Route::get('/empleados/{departamento}/ciudades', [EmpleadoDataController::class, 'ciudades']);
+Route::get('/empleados/{provincia}/ciudades', [EmpleadoDataController::class, 'ciudades']);
