@@ -14,7 +14,7 @@
                                     <router-link :to="{name:'EmpleadosIndex'}" class="btn btn-primary mb-2 float-right">Volver</router-link> 
                         </div>
                         <div class="card-body">
-                            <form>
+                            <form @submit.prevent="guardarEmpleado()">
                                 <div class="form-group row">
                                     <label for="apellido" class="col-md-4 col-form-label text-md-right">Apellido</label>
 
@@ -130,6 +130,7 @@
 
 <script>
 import Datepicker from 'vuejs-datepicker';
+import moment from 'moment';
     export default {
         components: {
             Datepicker
@@ -192,6 +193,28 @@ import Datepicker from 'vuejs-datepicker';
                         console.log(error);
                     });
             },
+            guardarEmpleado(){
+                axios.post('/api/empleados', {
+                    'apellido':this.form.apellido,
+                    'nombre':this.form.nombre,
+                    'nombre_medio':this.form.segundo_nombre,
+                    'direccion':this.form.direccion,
+                    'id_pais':this.form.id_pais,
+                    'id_provincia':this.form.id_provincia,
+                    'id_departamento':this.form.id_departamento,
+                    'id_ciudad':this.form.id_ciudad,
+                    'codigo_postal':this.form.codigo_postal,
+                    'fecha_nacimiento':this.formatDate(this.form.fecha_nacimiento),
+                    'fecha_contratacion':this.formatDate(this.form.fecha_contratacion),
+                }).then(res => {
+                    console.log(res);
+                })
+            },
+            formatDate(date){
+                if(date){
+                    return moment(String(date)).format('YYYYMMDD');
+                }
+            }
         },
     }
 </script>

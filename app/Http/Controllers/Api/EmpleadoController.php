@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+use App\Models\Empleado;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\EmpleadoStoreRequest;
 
 class EmpleadoController extends Controller
 {
@@ -33,9 +35,11 @@ class EmpleadoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EmpleadoStoreRequest $request)
     {
-        //
+        $empleado = Empleado::create($request->validated());
+
+        return response()->json($empleado);
     }
 
     /**

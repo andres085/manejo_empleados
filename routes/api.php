@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\EmpleadoController;
 use App\Http\Controllers\Api\EmpleadoDataController;
 
 /*
@@ -23,3 +24,5 @@ Route::get('/empleados/paises', [EmpleadoDataController::class, 'paises']);
 Route::get('/empleados/{pais}/provincias', [EmpleadoDataController::class, 'provincias']);
 Route::get('/empleados/departamentos', [EmpleadoDataController::class, 'departamentos']);
 Route::get('/empleados/{provincia}/ciudades', [EmpleadoDataController::class, 'ciudades']);
+
+Route::post('/empleados', [EmpleadoController::class, 'store']);
