@@ -15,13 +15,19 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col">
-                                <form>
+                                <form @submit.prevent="getEmpleados()">
                                     <div class="form-row align-items-center">
-                                        <div class="col-auto">
-                                            <input type="search" name="search" class="form-control mb-2" id="inlineFormInput" placeholder="Empleados">
+                                        <div class="col">
+                                            <input type="search" v-model.lazy="search" class="form-control mb-2" placeholder="Nombre Empleado">
                                         </div>
-                                        <div class="col-auto">
-                                            <button type="submit" class="btn btn-primary mb-2">Buscar</button>
+                                        <div class="col">
+                                            <button class="btn btn-primary mb-2">Buscar</button>
+                                        </div>
+                                        <div class="col">
+                                            <select name="id_departamento" class="form-control" aria-label="Default select example" v-model="departamentoSeleccionado">
+                                                <option value="" selected>Elija un Departamento</option>
+                                                <option v-for="departamento in departamentos" :key="departamento.id" :value="departamento.id">{{departamento.nombre}}</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </form>
@@ -58,7 +64,6 @@
                                         <div class="col">
                                                 <button class="btn btn-danger" @click="borrarEmpleado(empleado.id)">Borrar</button>
                                         </div>
-                                        
                                     </div>
                                 </td>
                             </tr>
@@ -76,15 +81,39 @@ export default {
         return {
             empleados: [],
             showMensaje: false,
-            mensaje: ''
+            mensaje: '',
+            search: null,
+            departamentoSeleccionado: null,
+            departamentos:[]
+        }
+    },
+    watch: {
+        search(){
+            this.getEmpleados();
+        },
+        departamentoSeleccionado(){
+            this.getEmpleados();
+            this.getDepartamentos();
         }
     },
     created() {
         this.getEmpleados();
+        this.getDepartamentos();
     },
     methods:{
+        getDepartamentos(){
+            axios.get('/api/empleados/departamentos')
+                .then(res => {
+                    this.departamentos = res.data;
+                }).catch(error => {
+                    console.log(error);
+                })
+        },
         getEmpleados(){
-            axios.get('/api/empleados')
+            axios.get('/api/empleados', {params: {
+                search: this.search,
+                id_departamento: this.departamentoSeleccionado
+                }})
             .then(res => {
                 this.empleados = res.data.data;
             }).catch(error => {

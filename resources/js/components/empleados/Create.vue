@@ -1,10 +1,5 @@
 <template>
     <div>
-        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">
-                Crear Empleado
-            </h1>
-        </div>
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8">
@@ -207,7 +202,7 @@ import moment from 'moment';
                     'fecha_nacimiento':this.formatDate(this.form.fecha_nacimiento),
                     'fecha_contratacion':this.formatDate(this.form.fecha_contratacion),
                 }).then(res => {
-                    console.log(res);
+                    this.$router.push({name: 'EmpleadosIndex'});
                 })
             },
             formatDate(date){

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\EmpleadoResource;
 use App\Http\Requests\EmpleadoStoreRequest;
+use App\Http\Resources\EmpleadoSingleResource;
 
 class EmpleadoController extends Controller
 {
@@ -15,9 +16,14 @@ class EmpleadoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $empleados = Empleado::all();
+        if($request->search){
+            $empleados = Empleado::where('nombre', 'like', "%{$request->search}%")->orWhere('apellido', 'like', "%{$request->search}%")->get();    
+        }elseif($request->id_departamento){
+            $empleados = Empleado::where('id_departamento', $request->id_departamento)->get();    
+        }
 
         return EmpleadoResource::collection($empleados);
     }
@@ -51,9 +57,9 @@ class EmpleadoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Empleado $empleado)
     {
-        //
+        return new EmpleadoSingleResource($empleado);
     }
 
     /**
@@ -74,9 +80,9 @@ class EmpleadoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EmpleadoStoreRequest $request, Empleado $empleado)
     {
-        //
+        $empleado->update($request->validated());
     }
 
     /**
