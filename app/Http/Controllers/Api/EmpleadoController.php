@@ -85,8 +85,10 @@ class EmpleadoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Empleado $empleado)
     {
-        //
+        $empleado->delete();
+
+        return response()->json('Empleado borrado con exito');
     }
 }

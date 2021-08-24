@@ -28,3 +28,4 @@ Route::get('/empleados/{provincia}/ciudades', [EmpleadoDataController::class, 'c
 
 Route::get('/empleados', [EmpleadoController::class, 'index']);
 Route::post('/empleados', [EmpleadoController::class, 'store']);
+Route::delete('/empleados/{empleado}', [EmpleadoController::class, 'destroy']);

@@ -7,6 +7,11 @@
         </div>
             <div class="row">
                 <div class="card mx-auto">
+                    <div>
+                        <div v-if="showMensaje" class="alert alert-success">
+                            {{mensaje}}
+                        </div>
+                    </div>
                     <div class="card-header">
                         <div class="row">
                             <div class="col">
@@ -48,10 +53,10 @@
                                 <td>
                                     <div class="row">
                                         <div class="col">
-                                            <a href="#" class="btn btn-success">Editar</a>
+                                            <router-link :to="{name: 'EmpleadosEdit', params: {id:empleado.id}}" class="btn btn-success">Editar</router-link>
                                         </div>
                                         <div class="col">
-                                                <button class="btn btn-danger" onclick="return confirm('¿Esta seguro que desea borrar?')">Borrar</button>
+                                                <button class="btn btn-danger" @click="borrarEmpleado(empleado.id)">Borrar</button>
                                         </div>
                                         
                                     </div>
@@ -61,7 +66,7 @@
                     </table>
                 </div>
             </div>
-        </div>
+        </div><br>
     </div>
 </template>
 
@@ -69,7 +74,9 @@
 export default {
     data(){
         return {
-            empleados: []
+            empleados: [],
+            showMensaje: false,
+            mensaje: ''
         }
     },
     created() {
@@ -80,6 +87,16 @@ export default {
             axios.get('/api/empleados')
             .then(res => {
                 this.empleados = res.data.data;
+            }).catch(error => {
+                console.log(error);
+            })
+        },
+        borrarEmpleado(id){
+            axios.delete('/api/empleados/'+id)
+            .then(res => {
+                this.showMensaje = true
+                this.mensaje = res.data;
+                this.getEmpleados();
             }).catch(error => {
                 console.log(error);
             })
