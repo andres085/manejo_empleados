@@ -26,7 +26,6 @@ class PaisController extends Controller
 
     public function store(PaisStoreRequest $request)
     {
-
         Pais::create($request->validated());
 
         return redirect()->route('paises.index')->with('message', 'País creado de manera exitosa');

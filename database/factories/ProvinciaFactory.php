@@ -2,9 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Models\Pais;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class PaisFactory extends Factory
+class ProvinciaFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -14,8 +15,10 @@ class PaisFactory extends Factory
     public function definition()
     {
         return [
-            'codigo_pais' => $this->faker->countryCode(),
-            'nombre' => $this->faker->country()
+            'pais_id' => function () {
+                return Pais::factory()->create()->id;
+            },
+            'nombre' => $this->faker->state
         ];
     }
 }

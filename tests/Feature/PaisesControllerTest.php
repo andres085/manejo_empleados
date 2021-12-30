@@ -28,7 +28,9 @@ class PaisesControllerTest extends TestCase
      *
      * @return void
      */
-    public function test_can_add_a_country()
+
+    /** @test */
+    public function can_add_a_country()
     {
 
         $this->post('/paises', $this->pais->toArray());
@@ -49,7 +51,6 @@ class PaisesControllerTest extends TestCase
         $response = $this->actingAs($this->user)
             ->get('/paises');
 
-        $response->assertStatus(200);
         $response->assertSeeText('Paises');
         $response->assertSeeText('Crear País');
     }

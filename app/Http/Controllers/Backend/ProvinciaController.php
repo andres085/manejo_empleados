@@ -13,7 +13,7 @@ class ProvinciaController extends Controller
     public function index(Request $request)
     {
         $provincias = Provincia::all();
-        if($request->has('search')){
+        if ($request->has('search')) {
             $provincias = Provincia::where('nombre', 'like', "%{$request->search}%")->get();
         }
         return view('provincias.index', compact('provincias'));
@@ -34,6 +34,8 @@ class ProvinciaController extends Controller
 
     public function edit(Provincia $provincia)
     {
+
+        dd($provincia);
         $paises = Pais::all();
         return view('provincias.edit', compact('provincia', 'paises'));
     }
