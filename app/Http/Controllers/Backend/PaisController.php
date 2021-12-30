@@ -13,7 +13,7 @@ class PaisController extends Controller
     public function index(Request $request)
     {
         $paises = Pais::all();
-        if($request->has('search')){
+        if ($request->has('search')) {
             $paises = Pais::where('codigo_pais', 'like', "%{$request->search}%")->orWhere('nombre', 'like', "%{$request->search}%")->get();
         }
         return view('paises.index', compact('paises'));
@@ -26,18 +26,20 @@ class PaisController extends Controller
 
     public function store(PaisStoreRequest $request)
     {
+
         Pais::create($request->validated());
 
         return redirect()->route('paises.index')->with('message', 'País creado de manera exitosa');
     }
 
-    public function edit (Pais $pais)
+    public function edit(Pais $pais)
     {
         return view('paises.edit', compact('pais'));
     }
 
     public function update(PaisStoreRequest $request, Pais $pais)
     {
+
         $pais->update($request->validated());
 
         return redirect()->route('paises.index')->with('message', 'País actualizado de manera exitosa');
