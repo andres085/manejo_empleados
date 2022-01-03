@@ -12,7 +12,6 @@ class PaisController extends Controller
 
     public function index(Request $request)
     {
-
         $paises = Pais::all();
         if ($request->has('search')) {
             $paises = Pais::where('codigo_pais', 'like', "%{$request->search}%")->orWhere('nombre', 'like', "%{$request->search}%")->get();

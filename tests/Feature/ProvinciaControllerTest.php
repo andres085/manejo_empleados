@@ -39,6 +39,17 @@ class ProvinciaControllerTest extends TestCase
     }
 
     /** @test */
+    public function can_search_for_a_provincia()
+    {
+
+        $response = $this->actingAs($this->user)->get('provincias?search=' . $this->provincia->nombre);
+
+        $response->assertStatus(200);
+
+        $response->assertSee($this->provincia->nombre);
+    }
+
+    /** @test */
     public function can_see_provincias_create_page()
     {
 

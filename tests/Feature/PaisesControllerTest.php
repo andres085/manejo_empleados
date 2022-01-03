@@ -34,6 +34,16 @@ class PaisesControllerTest extends TestCase
         $response->assertSee('Paises');
     }
 
+    /** @test */
+    public function can_search_for_a_pais()
+    {
+
+        $response = $this->actingAs($this->user)->get('paises?search=' . $this->pais->nombre);
+
+        $response->assertStatus(200);
+
+        $response->assertSee($this->pais->nombre);
+    }
 
     /** @test */
     public function can_see_pais_create_page()
