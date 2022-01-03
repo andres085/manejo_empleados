@@ -40,11 +40,11 @@ class ProvinciaControllerTest extends TestCase
     }
 
     /** @test */
-    public function name_is_required()
+    public function fields_required()
     {
-        $provincia = Provincia::create();
+        $provincia = [];
 
-        $response = $this->post('provincias', $provincia->toArray());
+        $response = $this->post('provincias', $provincia);
 
         $response->assertSessionHasErrors(['pais_id', 'nombre']);
     }
@@ -60,7 +60,7 @@ class ProvinciaControllerTest extends TestCase
     }
 
     /** @test */
-    public function error_404_if_province_not_found()
+    public function error_404_if_province_to_update_not_found()
     {
         $response = $this->put('provincias/-1');
 
@@ -68,7 +68,7 @@ class ProvinciaControllerTest extends TestCase
     }
 
     /** @test */
-    public function can_edit_a_province()
+    public function can_update_a_province()
     {
         $provincia = Provincia::factory()->create([
             'nombre' =>  'Rio Negro'
@@ -83,6 +83,14 @@ class ProvinciaControllerTest extends TestCase
                 'nombre' => 'Rio Negro'
             ]
         );
+    }
+
+    /** @test */
+    public function error_404_if_province_to_delete_not_found()
+    {
+        $response = $this->delete('provincias/-1');
+
+        $response->assertStatus(404);
     }
 
     /** @test */

@@ -5,7 +5,6 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use App\Models\Pais;
 use App\Models\User;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
@@ -56,7 +55,7 @@ class PaisesControllerTest extends TestCase
     }
 
     /** @test */
-    public function error_404_if_country_not_found()
+    public function error_404_if_country_to_update_not_found()
     {
 
         $response = $this->put('paises/-1');
@@ -65,7 +64,7 @@ class PaisesControllerTest extends TestCase
     }
 
     /** @test */
-    public function can_edit_a_country()
+    public function can_update_a_country()
     {
 
         $pais = Pais::factory()->create([
@@ -82,6 +81,15 @@ class PaisesControllerTest extends TestCase
                 'nombre' => 'Rusia'
             ]
         );
+    }
+
+    /** @test */
+    public function error_404_if_country_to_delete_not_found()
+    {
+
+        $response = $this->delete('paises/-1');
+
+        $response->assertStatus(404);
     }
 
     /** @test */
