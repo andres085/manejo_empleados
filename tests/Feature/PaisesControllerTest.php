@@ -22,11 +22,40 @@ class PaisesControllerTest extends TestCase
 
         $this->pais = Pais::factory()->create();
     }
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
+
+    /** @test */
+    public function can_see_paises_index_page()
+    {
+
+        $response = $this->actingAs($this->user)->get('paises');
+
+        $response->assertStatus(200);
+
+        $response->assertSee('Paises');
+    }
+
+
+    /** @test */
+    public function can_see_pais_create_page()
+    {
+        $response = $this->actingAs($this->user)->get(route('paises.create'));
+
+        $response->assertStatus(200);
+
+        $response->assertSee('Crear País');
+    }
+
+    /** @test */
+    public function can_see_edit_pais_page()
+    {
+
+        $response = $this->actingAs($this->user)->get("/paises/{$this->pais->id}/edit");
+
+        $response->assertStatus(200);
+
+        $response->assertSee('Editar País');
+    }
+
 
     /** @test */
     public function can_add_a_country()

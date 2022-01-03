@@ -34,8 +34,6 @@ class ProvinciaController extends Controller
 
     public function edit(Provincia $provincia)
     {
-
-        dd($provincia);
         $paises = Pais::all();
         return view('provincias.edit', compact('provincia', 'paises'));
     }

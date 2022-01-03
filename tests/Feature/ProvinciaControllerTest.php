@@ -28,6 +28,40 @@ class ProvinciaControllerTest extends TestCase
     }
 
     /** @test */
+    public function can_see_provincias_index_page()
+    {
+
+        $response = $this->actingAs($this->user)->get('provincias');
+
+        $response->assertStatus(200);
+
+        $response->assertSee('Provincias');
+    }
+
+    /** @test */
+    public function can_see_provincias_create_page()
+    {
+
+        $response = $this->actingAs($this->user)->get(route('provincias.create'));
+
+        $response->assertStatus(200);
+
+        $response->assertSee('Crear Provincia');
+    }
+
+    /** @test */
+    public function can_see_edit_provincia_page()
+    {
+
+        $response = $this->actingAs($this->user)->get("/provincias/{$this->provincia->id}/edit");
+
+        $response->assertStatus(200);
+
+        $response->assertSee('Editar Provincia');
+    }
+
+
+    /** @test */
     public function can_add_a_province()
     {
 
