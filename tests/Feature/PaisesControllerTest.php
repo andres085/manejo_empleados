@@ -44,6 +44,16 @@ class PaisesControllerTest extends TestCase
     }
 
     /** @test */
+    public function fields_required()
+    {
+        $pais = [];
+
+        $response = $this->post('paises', $pais);
+
+        $response->assertSessionHasErrors(['codigo_pais', 'nombre']);
+    }
+
+    /** @test */
     public function can_get_countries()
     {
 
