@@ -93,17 +93,6 @@ class PaisesControllerTest extends TestCase
     }
 
     /** @test */
-    public function can_get_countries()
-    {
-
-        $response = $this->actingAs($this->user)
-            ->get('/paises');
-
-        $response->assertSeeText('Paises');
-        $response->assertSeeText('Crear País');
-    }
-
-    /** @test */
     public function error_404_if_country_to_update_not_found()
     {
 

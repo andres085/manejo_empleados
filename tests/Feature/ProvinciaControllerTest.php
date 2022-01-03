@@ -94,16 +94,6 @@ class ProvinciaControllerTest extends TestCase
         $response->assertSessionHasErrors(['pais_id', 'nombre']);
     }
 
-
-    /** @test */
-    public function can_get_provinces()
-    {
-        $response = $this->get('/provincias');
-
-        $response->assertSeeText('Provincias');
-        $response->assertSeeText('Crear Provincia');
-    }
-
     /** @test */
     public function error_404_if_province_to_update_not_found()
     {
