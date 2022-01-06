@@ -73,7 +73,7 @@ class ProvinciaControllerTest extends TestCase
 
 
     /** @test */
-    public function can_add_a_province()
+    public function can_create_a_province()
     {
 
         $this->post('provincias', $this->provincia->toArray());

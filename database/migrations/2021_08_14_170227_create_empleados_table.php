@@ -19,7 +19,7 @@ class CreateEmpleadosTable extends Migration
             $table->string('nombre');
             $table->string('nombre_medio')->nullable();
             $table->string('direccion');
-            $table->foreignId('id_departamento')->constrained('departamentos');
+            $table->foreignId('id_departamento')->constrained('departamentos')->onDelete('cascade');;
             $table->foreignId('id_pais')->constrained('paises');
             $table->foreignId('id_provincia')->constrained('provincias');
             $table->foreignId('id_ciudad')->constrained('ciudades');

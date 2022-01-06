@@ -18,11 +18,12 @@ class EmpleadoController extends Controller
      */
     public function index(Request $request)
     {
+
         $empleados = Empleado::all();
-        if($request->search){
-            $empleados = Empleado::where('nombre', 'like', "%{$request->search}%")->orWhere('apellido', 'like', "%{$request->search}%")->get();    
-        }elseif($request->id_departamento){
-            $empleados = Empleado::where('id_departamento', $request->id_departamento)->get();    
+        if ($request->search) {
+            $empleados = Empleado::where('nombre', 'like', "%{$request->search}%")->orWhere('apellido', 'like', "%{$request->search}%")->get();
+        } elseif ($request->id_departamento) {
+            $empleados = Empleado::where('id_departamento', $request->id_departamento)->get();
         }
 
         return EmpleadoResource::collection($empleados);
