@@ -5,218 +5,68 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>Gestor Empleados</title>
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <!-- Styles -->
     <style>
-        /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
-        html {
-            line-height: 1.15;
-            -webkit-text-size-adjust: 100%
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
         }
 
-        body {
-            margin: 0
-        }
-
-        a {
-            background-color: transparent
-        }
-
-        .text-gray-200 {
-            --text-opacity: 1;
-            color: #edf2f7;
-            color: rgba(237, 242, 247, var(--text-opacity))
-        }
-
-        .text-gray-300 {
-            --text-opacity: 1;
-            color: #e2e8f0;
-            color: rgba(226, 232, 240, var(--text-opacity))
-        }
-
-        .text-gray-400 {
-            --text-opacity: 1;
-            color: #cbd5e0;
-            color: rgba(203, 213, 224, var(--text-opacity))
-        }
-
-        .text-gray-500 {
-            --text-opacity: 1;
-            color: #a0aec0;
-            color: rgba(160, 174, 192, var(--text-opacity))
-        }
-
-        .text-gray-600 {
-            --text-opacity: 1;
-            color: #718096;
-            color: rgba(113, 128, 150, var(--text-opacity))
-        }
-
-        .text-gray-700 {
-            --text-opacity: 1;
-            color: #4a5568;
-            color: rgba(74, 85, 104, var(--text-opacity))
-        }
-
-        .text-gray-900 {
-            --text-opacity: 1;
-            color: #1a202c;
-            color: rgba(26, 32, 44, var(--text-opacity))
-        }
-
-        .underline {
-            text-decoration: underline
-        }
-
-        .antialiased {
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale
-        }
-
-        .w-5 {
-            width: 1.25rem
-        }
-
-        .w-8 {
-            width: 2rem
-        }
-
-        .w-auto {
-            width: auto
-        }
-
-        .grid-cols-1 {
-            grid-template-columns: repeat(1, minmax(0, 1fr))
-        }
-
-        @media (min-width:640px) {
-            .sm\:rounded-lg {
-                border-radius: .5rem
-            }
-
-            .sm\:block {
-                display: block
-            }
-
-            .sm\:items-center {
-                align-items: center
-            }
-
-            .sm\:justify-start {
-                justify-content: flex-start
-            }
-
-            .sm\:justify-between {
-                justify-content: space-between
-            }
-
-            .sm\:h-20 {
-                height: 5rem
-            }
-
-            .sm\:ml-0 {
-                margin-left: 0
-            }
-
-            .sm\:px-6 {
-                padding-left: 1.5rem;
-                padding-right: 1.5rem
-            }
-
-            .sm\:pt-0 {
-                padding-top: 0
-            }
-
-            .sm\:text-left {
-                text-align: left
-            }
-
-            .sm\:text-right {
-                text-align: right
-            }
-        }
-
-        @media (min-width:768px) {
-            .md\:border-t-0 {
-                border-top-width: 0
-            }
-
-            .md\:border-l {
-                border-left-width: 1px
-            }
-
-            .md\:grid-cols-2 {
-                grid-template-columns: repeat(2, minmax(0, 1fr))
-            }
-        }
-
-        @media (min-width:1024px) {
-            .lg\:px-8 {
-                padding-left: 2rem;
-                padding-right: 2rem
-            }
-        }
-
-        @media (prefers-color-scheme:dark) {
-            .dark\:bg-gray-800 {
-                --bg-opacity: 1;
-                background-color: #2d3748;
-                background-color: rgba(45, 55, 72, var(--bg-opacity))
-            }
-
-            .dark\:bg-gray-900 {
-                --bg-opacity: 1;
-                background-color: #1a202c;
-                background-color: rgba(26, 32, 44, var(--bg-opacity))
-            }
-
-            .dark\:border-gray-700 {
-                --border-opacity: 1;
-                border-color: #4a5568;
-                border-color: rgba(74, 85, 104, var(--border-opacity))
-            }
-
-            .dark\:text-white {
-                --text-opacity: 1;
-                color: #fff;
-                color: rgba(255, 255, 255, var(--text-opacity))
-            }
-
-            .dark\:text-gray-400 {
-                --text-opacity: 1;
-                color: #cbd5e0;
-                color: rgba(203, 213, 224, var(--text-opacity))
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
             }
         }
     </style>
 
-    <style>
-        body {
-            font-family: 'Nunito', sans-serif;
-        }
-    </style>
+
+    <!-- Custom styles for this template -->
+    <link href="{{asset('css/cover.css')}}" rel="stylesheet">
+
 </head>
 
-<body class="antialiased">
-    <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-        @if (Route::has('login'))
-        <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-            @auth
-            <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Home</a>
-            @else
-            <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
-            @if (Route::has('register'))
-            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
-            @endif
-            @endauth
-        </div>
-        @endif
+<body class="d-flex h-100 text-center text-white bg-dark">
 
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+        <header class="mb-auto">
+            <div>
+                <h3 class="float-md-start mb-0">Gestor Empleados</h3>
+                <nav class="nav nav-masthead justify-content-center float-md-end">
+                    @if (Route::has('login'))
+                    @auth
+                    <a href="{{ url('/home') }}" class="nav-link active" aria-current="page" href="#">Home</a>
+                    @else
+                    <a href="{{ route('login') }}" class="nav-link">Log in</a>
+                    @if (Route::has('register'))
+                    <a href="{{ route('register') }}" class="nav-link">Register</a>
+                    @endif
+                    @endauth
+                    @endif
+                </nav>
+            </div>
+        </header>
+
+        <main class="px-3">
+            <h1>Cover your page.</h1>
+            <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
+            <p class="lead">
+                <a href="#" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Learn more</a>
+            </p>
+        </main>
+
+        <footer class="mt-auto text-white-50">
+            <p>Cover template for <a href="https://getbootstrap.com/" class="text-white">Bootstrap</a>, by <a href="https://twitter.com/mdo" class="text-white">@mdo</a>.</p>
+        </footer>
     </div>
+
 </body>
+
 
 </html>
