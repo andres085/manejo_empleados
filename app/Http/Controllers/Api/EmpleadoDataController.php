@@ -13,22 +13,22 @@ class EmpleadoDataController extends Controller
     public function paises()
     {
         $paises = Pais::all();
-        return response()->json($paises);
+        return response()->json($paises, 200);
     }
 
     public function provincias(Pais $pais)
     {
-        return response()->json($pais->provincias);
+        return response()->json($pais->provincias, 200);
     }
 
     public function ciudades(Provincia $provincia)
     {
-        return response()->json($provincia->ciudades);
+        return response()->json($provincia->ciudades, 200);
     }
 
     public function departamentos()
     {
         $departamentos = Departamento::all();
-        return response()->json($departamentos);
+        return response()->json($departamentos, 200);
     }
 }

@@ -18,26 +18,15 @@ class EmpleadoController extends Controller
      */
     public function index(Request $request)
     {
-
         $empleados = Empleado::all();
         if ($request->search) {
             $empleados = Empleado::where('nombre', 'like', "%{$request->search}%")->orWhere('apellido', 'like', "%{$request->search}%")->get();
         } elseif ($request->id_departamento) {
             $empleados = Empleado::where('id_departamento', $request->id_departamento)->get();
         }
-
         return EmpleadoResource::collection($empleados);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -63,16 +52,6 @@ class EmpleadoController extends Controller
         return new EmpleadoSingleResource($empleado);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
