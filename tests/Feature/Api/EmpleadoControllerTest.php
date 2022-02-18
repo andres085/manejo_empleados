@@ -63,6 +63,14 @@ class EmpleadoControllerTest extends TestCase
     }
 
     /** @test */
+    public function can_list_one_empleado()
+    {
+        $response = $this->actingAs($this->user)->json('GET', "api/empleados/{$this->empleado->id}");
+
+        $response->assertStatus(200)->assertJsonFragment(['nombre' => $this->empleado->nombre]);
+    }
+
+    /** @test */
     public function can_update_an_empleado()
     {
         $empleado = Empleado::factory()->create([
