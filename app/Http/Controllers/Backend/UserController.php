@@ -19,7 +19,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $users = User::all();
-        if($request->has('search')){
+        if ($request->has('search')) {
             $users = User::where('usuario', 'like', "%{$request->search}%")->orWhere('email', 'like', "%{$request->search}%")->get();
         }
         return view('users.index', compact('users'));
@@ -43,7 +43,7 @@ class UserController extends Controller
      */
     public function store(UserStoreRequest $request)
     {
-          User::create([
+        User::create([
             'usuario' => $request->usuario,
             'nombre' => $request->nombre,
             'apellido' => $request->apellido,
@@ -63,7 +63,6 @@ class UserController extends Controller
     public function edit(User $user)
     {
         return view('users.edit', compact('user'));
-        
     }
 
     /**
@@ -93,11 +92,10 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        if(auth()->user()->id === $user->id){
+        if (auth()->user()->id === $user->id) {
             return redirect()->route('users.index')->with('message', 'No puedes borrarte a ti mismo');
         }
         $user->delete();
         return redirect()->route('users.index')->with('message', 'Usuario borrado con exito');
-
     }
 }
