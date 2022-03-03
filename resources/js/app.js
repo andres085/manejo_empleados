@@ -26,7 +26,8 @@ Vue.use(VueRouter);
 Vue.component(
     'empleados-index', require('./components/empleados/Index.vue').default,
     'empleados-create', require('./components/empleados/Create.vue').default,
-    'empleados-edit', require('./components/empleados/Edit.vue').default
+    'empleados-edit', require('./components/empleados/Edit.vue').default,
+    'example-component', require('./components/ExampleComponent.vue').default
 );
 
 const router = new VueRouter({
